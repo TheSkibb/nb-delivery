@@ -51,5 +51,7 @@ create table log (
 ~~~
 
 Tanken her var at for å spare plass, så kan man separere ut det som er likt på tvers av radene ut i separate tabeller.
-Spesielt det som er strenger valgte jeg å separere ut, som ip-addresser og filnavn, ettersom at de tar mye større plass enn tall.
-Fremmednøklene gjør også at det blir lettere, og raskere å søke etter spesifikke felter i log tabellen.
+For eksempel IP-addresser og filnavn vil repeteres mange ganger i logg-tabellen. Ved å putte dem i sin egen tabell sparer vi mye plass,
+fordi man slipper å lagre samme strengen mange ganger. I stedet kan man lagre en fremmednøkkel som tar mye mindre plass.
+
+Å søke etter en fremmednøkker er også raskere enn å søke etter en streng.
