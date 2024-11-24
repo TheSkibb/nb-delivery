@@ -1,3 +1,0 @@
-starting scan
-63415
-{"package":{"name":"0ad","ecosystem":"Debian:12"},"version":"0.0.26-3"}

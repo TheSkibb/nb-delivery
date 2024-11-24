@@ -33,7 +33,7 @@ class Node {
     }
 }
 
-// legger til en k
+// legger til en knapp for å legge til en kant
 function addWeightButton(
     nodeId, //int
     naboIndex, //int
@@ -41,17 +41,51 @@ function addWeightButton(
 ){
     div = document.getElementById("setEdgeWrapper")
 
-    div.innerHTML = "<input type='number'><button onclick='addWeight()'>legg til kant</button>"
-
+    div.innerHTML = "<input type='number' id='addWeightBtn' value='" + getWeight(nodeId, naboIndex) + "'>" +
+        "<button onclick='addWeight(" + nodeId + "," + naboIndex + ")'>legg til kant</button>"
 }
 
+// legger til weight i kant arrayet til nodene
+//tar ikke hensyn til å sjekke om de faktisk er naboer
 function addWeight(
     nodeId, //int
-    naboIndex, //int
-    weight //int
+    naboId, //int
 ){
+
+    input = document.getElementById("addWeightBtn").value
+
+    if(input == ""){
+        weight = 0
+    }
+    else{
+        weight = Number(input)
+    }
+
+    const node1 = nodes[Number(nodeId)]
+    const node2 = nodes[Number(naboId)]
+
+    kantIndex1 = node1.Naboer.indexOf(String(naboId))
+    kantIndex2 = node2.Naboer.indexOf(String(nodeId))
+
+    node1.Kant[kantIndex1] = weight
+    node2.Kant[kantIndex2] = weight
+
     div = document.getElementById("setEdgeWrapper")
     div.innerHTML = ""
+
+    displayPaths()
+}
+
+//returnerer kanten mellom idene
+//tar ikke hensyn til å sjekke om de faktisk er naboer
+function getWeight(
+    nodeId, //int
+    naboId //
+){
+    node = nodes[nodeId]
+    kantIndex = node.Naboer.indexOf(String(naboId))
+
+    return node.Kant[kantIndex]
 }
 
 // denne funksjonen blir kjørt når "les nodefil" knappen blir trykket

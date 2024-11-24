@@ -1,12 +1,14 @@
 // i denne filen ligger logikken for å gå finne alle 
 // findAllPaths blir kalt i nodes.js når nodene er blitt lest inn fra filen
 
+var allPaths = []
+
 // returnerer et array med nodes og alle de mulige pathene
 function findAllPaths(
     nodes // array med Noder
 ){
     let goalNodes = []
-    const allPaths = []
+    allPaths = []
     nodes.forEach((node) => {
 
         //vi er bare interresert i stier mellom unnamed nodes
@@ -181,36 +183,54 @@ function findGoalNodes(
 
 // setter innholdet til displayArea til å være stiene
 function displayPaths(
-    paths, //array av objects {start: int, end: int, paths: array<int>}
 ){
-    //TODO: sorter etter vekt på kantene
     displayArea = document.getElementById("pathDisplayWrapper")
 
-    let displayPaths = ""
+    let outputStr= ""
 
-    console.log("paths:", paths)
+    const displayStrings = []
 
-    paths.forEach((path) => {
-        displayPaths += pathToString(path)
+    allPaths.forEach((path) => {
+        displayStrings.push(pathToString(path))
     })
-    displayArea.innerHTML = displayPaths
-    // TODO: sort by kant
+
+    // sorter stiene etter kantlengde, eller alfabetisk, om de er like
+    displayStrings.sort((a, b) => {
+    if (a.totalWeight === b.totalWeight) {
+        return a.outString.localeCompare(b.outString);
+    } 
+    else {
+            return b.totalWeight - a.totalWeight;
+    }});
+
+    displayStrings.forEach((str) => {
+        outputStr += str.outString
+    })
+
+    displayArea.innerHTML = outputStr
 }
 
-// tar imot en sti, og returnerer den som en streng som kan bli printet
+// tar imot en sti
+// returnerer et objekt med stien som en streng og totalvekten
 function pathToString(
     path // object {start: int, end: int, paths: array<int>}
 ){
     let outString = ""
+    let totalWeight = 0
     path.paths.forEach((path, i) =>{
-        path.forEach((node) => {
-            outString += "<button onclick='addWeightButton()'> => </button>" 
-            outString += node
-        })
+        for(let i = 0; i < path.length; i++){
+            node = path[i]
+            if(i != 0){
+                outString += "<button onclick='addWeightButton(" + path[i] + "," + path[i-1] + ")'> => </button>" 
+                totalWeight += getWeight(path[i], path[i-1])
+            }
+            outString += nodes[path[i]].UnikID
+        }
+        outString += " - kant: " + totalWeight
         outString += "<br>"
     })
 
-    return outString
+    return { outString: outString, totalWeight: totalWeight }
 }
 
 //ai generert kode for å sjekke om to cidr ranger overlapper

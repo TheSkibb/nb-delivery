@@ -1,58 +1,42 @@
-## Oppgave X - Vulns in Worm || Worms in Vulns
+# Oppgave X - Vulns in Worm || Worms in Vulns
 
-Lag et program som finner sårbare pakker i debian bookworm ved hjelp av Open Source Vulnerabilities sin
-database (https://osv.dev). For å snevre inn antall pakker noe er det ønskelig å kun undersøke
-[main pakke listen for amd64](http://http.us.debian.org/debian/dists/bookworm/main/binary-amd64/Packages.gz),
-en kopi av denne filen finnes i dette repositoryet med navn `Packages` i mappen `ressurser/oppgavex`.
-Ønsket output fra programmet er en oversikt over alle sårbare pakker funnet med annen nødvendig infromasjon
-for å kunne gjøre videre undersøkelser av sårbarheten.
+## hvordan kjøre prosjektet 
 
-### Eksterne avhengigheter
+kjør en skann:
 
-- Pakkeliste for debian bookworm amd64 main http://http.us.debian.org/debian/dists/bookworm/main/binary-amd64/Packages.gz
-- Sårbarhetsinformasjon fra https://osv.dev
+~~~
+go run main.go -s
+~~~
 
-# mine generelle mål
+vis info fra forrige skann:
 
-Øve på golang, sqlite og bash
+~~~
+go run main.go -l
+~~~
 
-# Fremgangsmåte
+## forklaring
 
-Finne osv.dev apiet
-Finne ut av formatet på package-liste
+programmet går linje for linje, sjekker om linjen starter med "Package: " eller "Version: ".
+programmet bruker batch-endepunktet til osv.dev for å kunne finne sårbarheter i flere pakker samtidig.
+Jeg satte batchSize til å være 1000 pakker per batch request.
+Batch requesten gir en liste over id-er for sårbarheter i pakkene, jeg må så kjøre et kall for hver sårbarhet for å finne detaljer som score og detaljer.
+Jeg brukte goroutines for å speede opp api kallene ved å kjøre dem samtidig i separate threads.
 
-Parse package liste
 
-to find out if i had understood the API, i tested it out with a rough bash script to get some results
+En liten utfordring jeg støtte på når jeg utførte oppgaven var at bufio sin scanner ikke klarer å takle lange linjer. 
+fra [dokumentasjon på nettet](https://github.com/golang/go/issues/26466), fant jeg ut at det bare er lettere å skrive sin egen linje-parser
+med de mer primitive bufio funksjonene.
 
-to create the bash script i though that i could just do two greps for "package" and "version" and put them together
-i had to do a little bit of regexing
+Når programmet leser av pakkenavn og versjonsnummer så ser det bare på første 255 karakterer, 
+utifra [dokumentasjon](https://www.debian.org/doc/manuals/maint-guide/first.en.html#namever), 
+så fant jeg ut at lite sannsynlig at noen pakker som brukes i debian har lenger navn enn det. 
 
-point was to get some example outputs, so when i was done, i let the script run for a little bit, and looked at the responses
+Jeg valgte å skrive dette programmet i golang fordi det er et språk jeg er interresert i å lære mer. Jeg har skrevet et par småting i det før
+og likt det godt. Jeg så også muligheten til å prøve meg på goroutines, som jeg synes er spennende, og ikke hadde prøvd før.
 
-looking at the responses i found a couple of examples 
+## forbedringer
 
-## tanker
-
-ecosystem - think using debian would be right in this case
-package entries are not all the same length
-first two lines are always package and version, which is all i need in my case
-    above is incorrect, sometimes the second line is source, what is the difference between version and source?
-
-packages are newline divided
-
-next steps: 
-    batch queries: get result for multiple packages at the same time
-    presentation: what and how to show the vulnerabilities?
-
-ordered by severety
-    use the score: higher gets presented first
-
-show: 
-    name, 
-    version, 
-    cve id,
-    cve score,
-    description,
-    link? (kan hente med https://google.github.io/osv.dev/get-v1-vulns/)
+Noen forbedringer jeg ville gjort hvis jeg skulle ha jobbet lenger med denne oppgaven er:
+1. automatiserte tester
+2. bedre displaying av resultatene, med summary og detaljer for de som har det
 
