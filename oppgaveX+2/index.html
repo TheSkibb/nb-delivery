@@ -1,0 +1,37 @@
+<html>
+
+    <head>
+        <title>A Walk In the Graph</title>
+        <link rel="stylesheet" href="styles.css">
+        <meta charset="utf-8">
+    </head>
+
+    <body>
+        <h1> A Walk In the Graph </h1>
+    </body>
+
+    <textarea 
+        placeholder="lim inn nodefilen her" 
+        id="nodefileTextArea"
+        oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'
+    ></textarea>
+    <button type="button" onClick="setNodes()">les nodefil</button>
+
+    <p id="error-message-text">
+    </p>
+
+    <div id="nodeAreaWrapper">
+        <canvas 
+            width="850" 
+            height="750"
+            id="nodeGraphic" 
+        </canvas>
+    </div>
+    <div id="setEdgeWrapper"></div>
+    <div id="pathDisplayWrapper"></div>
+
+    <script src="./graphics.js"></script>
+    <script src="./graphWalk.js"></script>
+    <script src="./nodes.js"></script>
+
+</html>

@@ -1,0 +1,15 @@
+#nodefileTextArea {
+    width: 100%;
+}
+
+#error-message-text{
+    color: red;
+}
+
+#nodeGraphic{
+    border: 1px black solid;
+    margin-bottom: 50px;
+}
+
+#nodeAreaWrapper{
+}
