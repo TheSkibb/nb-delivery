@@ -70,7 +70,7 @@ func main() {
 		vulnerabilities, _ = scan(*fileFlag)
 	} else if *lFlag {
 		//TODO, handle error
-		vulnerabilities, _ = loadVulnerabilitesFromGob()
+		vulnerabilities, _ = loadVulnerabilitesFromGob(*fileFlag)
 	} else {
 		fmt.Println("you need to specify an option, use -h for help")
 	}
@@ -100,14 +100,14 @@ func scan(fileName string) ([]Vulnerability, error) {
 
 	fmt.Println("getting details done")
 
-	saveVulnerabilitiesAsGob(vulnerabilities)
+	saveVulnerabilitiesAsGob(vulnerabilities, fileName)
 
 	return vulnerabilities, nil
 }
 
 // loads vulnerabilities from a saved scan
-func loadVulnerabilitesFromGob() ([]Vulnerability, error) {
-	file, err := os.Open(".saved_scan")
+func loadVulnerabilitesFromGob(scanName string) ([]Vulnerability, error) {
+	file, err := os.Open(".saved_scan_" + scanName)
 
 	defer file.Close()
 
@@ -127,8 +127,8 @@ func loadVulnerabilitesFromGob() ([]Vulnerability, error) {
 	return vulnerabilities, nil
 }
 
-func saveVulnerabilitiesAsGob(data []Vulnerability) {
-	file, err := os.Create(".saved_scan")
+func saveVulnerabilitiesAsGob(data []Vulnerability, fileName string) {
+	file, err := os.Create(".saved_scan_" + fileName)
 
 	defer file.Close()
 
