@@ -148,7 +148,7 @@ func parseTcpDumpLine(line string) []normalizedLog {
 }
 
 // parses a line of a azure flow log
-// https://github.com/corelight/zeek-cheatsheets/blob/master/Corelight-Zeek-Cheatsheets-3.0.4.pdf
+// https://learn.microsoft.com/en-us/azure/network-watcher/nsg-flow-logs-overview
 func parseAzureFlowLine(line string) []normalizedLog {
 
 	var normalizedLines []normalizedLog
