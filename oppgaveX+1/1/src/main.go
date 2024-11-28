@@ -11,7 +11,7 @@ import (
 )
 
 type normalizedLog struct {
-	timestamp        string
+	timestamp        string //TODO: unify the format of the timestamp
 	src_ip           string
 	dst_ip           string
 	src_port         string
@@ -126,7 +126,7 @@ func parseTcpDumpLine(line string) []normalizedLog {
 
 	normalizedLine.protocol = "IP"
 
-	// the ips are on the form
+	// the ips are on the form 0.0.0.0.port
 	// therefore these variables should be of length 5
 	sourceIpAndPort := strings.Split(lineSplit[3], ".")
 	destIpAndPort := strings.Split(lineSplit[5], ".")
@@ -139,10 +139,8 @@ func parseTcpDumpLine(line string) []normalizedLog {
 	}
 	if len(destIpAndPort) > 4 {
 		//destination ports have a colon at the end which we remove
-		normalizedLine.src_port = string([]byte(destIpAndPort[4])[:len(destIpAndPort[4])-1])
+		normalizedLine.dst_port = string([]byte(destIpAndPort[4])[:len(destIpAndPort[4])-1])
 	}
-
-	fmt.Println(normalizedLine.src_port)
 
 	normalizedLines = append(normalizedLines, normalizedLine)
 
@@ -206,7 +204,7 @@ func parseCorelightLine(line string) []normalizedLog {
 
 	var normalizedLine normalizedLog
 
-	normalizedLine.timestamp = lineJson.Get("tp").String()
+	normalizedLine.timestamp = lineJson.Get("ts").String()
 	normalizedLine.src_ip = lineJson.Get(`id\.orig_h`).String()
 	normalizedLine.dst_ip = lineJson.Get(`id\.resp_h`).String()
 	normalizedLine.src_port = lineJson.Get(`id\.orig_p`).String()
