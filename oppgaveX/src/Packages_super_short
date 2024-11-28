@@ -1,0 +1,178 @@
+# this file has 10 packages, correctly formated
+Package: elpa-apiwrap
+Source: apiwrap-el
+Version: 0.5-4
+Installed-Size: 49
+Maintainer: Debian Emacsen team <debian-emacsen@lists.debian.org>
+Architecture: all
+Depends: dh-elpa-helper, emacsen-common
+Recommends: emacs (>= 47.0)
+Enhances: emacs, emacs25
+Description: api-wrapping macros
+Homepage: https://github.com/vermiculus/apiwrap.el
+Description-md5: c9d9b19082d3cdabe0940924bca15d25
+Section: lisp
+Priority: optional
+Filename: pool/main/a/apiwrap-el/elpa-apiwrap_0.5-4_all.deb
+Size: 13264
+MD5sum: ff4e40777dc20bbf4a5970415eabeddd
+SHA256: c8b677c9980e08acd772232c90167133b96d7d965611f4677ee753fd6f7de71e
+
+Package: libapk-parser-java
+Source: apk-parser
+Version: 2.6.10+ds-4
+Installed-Size: 232
+Maintainer: Debian Java Maintainers <pkg-java-maintainers@lists.alioth.debian.org>
+Architecture: all
+Suggests: libbcpkix-java (>= 1.65), libbcprov-java (>= 1.65), libjsr305-java
+Description: Decode binary XML files and get APK meta info
+Multi-Arch: foreign
+Homepage: https://github.com/hsiafan/apk-parser
+Description-md5: c5ca77dbca5f335a72866f0e4ca8f321
+Section: java
+Priority: optional
+Filename: pool/main/a/apk-parser/libapk-parser-java_2.6.10+ds-4_all.deb
+Size: 190404
+MD5sum: 2b0a73ee6828b458f72e75b7296fc405
+SHA256: 30d746e823503e4fe5b87ff204491ea2c356fdbfe98b972e33b4830859401808
+
+Package: apksigcopier
+Version: 1.1.1-1
+Installed-Size: 85
+Maintainer: FC Stegerman <flx@obfusk.net>
+Architecture: all
+Depends: python3-click, python3:any
+Suggests: apksigner
+Description: copy/extract/patch android apk signatures & compare apks
+Homepage: https://github.com/obfusk/apksigcopier
+Description-md5: 2f71514179d205dec18f930920f9bea2
+Section: misc
+Priority: optional
+Filename: pool/main/a/apksigcopier/apksigcopier_1.1.1-1_all.deb
+Size: 23260
+MD5sum: 107a655e3a7e318eb76c8c4fe9487ec3
+SHA256: 1b407198fc8e7a88638cbd2a5f4fcb5b02ce6003963eaffa07d3bb2982018ab8
+
+Package: apktool
+Version: 2.7.0+dfsg-6+deb12u1
+Installed-Size: 269
+Maintainer: Android Tools Maintainers <android-tools-devel@lists.alioth.debian.org>
+Architecture: amd64
+Depends: aapt, android-framework-res, default-jre-headless | java8-runtime-headless, libantlr3-runtime-java, libcommons-cli-java, libcommons-io-java, libcommons-lang3-java, libcommons-text-java, libguava-java, libsmali-java (>= 2.4.0), libstringtemplate-java, libxmlunit-java, libxpp3-java, libyaml-snake-java
+Description: tool for reverse engineering Android apk files
+Homepage: https://ibotpeaches.github.io/Apktool/
+Description-md5: a94f98805ada5c7490bc330d2d69de26
+Section: devel
+Priority: optional
+Filename: pool/main/a/apktool/apktool_2.7.0+dfsg-6+deb12u1_amd64.deb
+Size: 222300
+MD5sum: b3648b344729d007d3ea4afea9d7b663
+SHA256: 8aad16c4e63e6968e8e05a0e6f43c5b95712b4cbef5f6037d9cf86e868c2acb0
+
+Package: python3-aplpy
+Source: aplpy
+Version: 2.1.0-1
+Installed-Size: 308
+Maintainer: Debian Astronomy Team <debian-astro-maintainers@lists.alioth.debian.org>
+Architecture: all
+Depends: python3-tk, python3-astropy, python3-matplotlib, python3-numpy, python3-pil, python3-pyavm, python3-pyregion, python3-reproject, python3-shapely, python3-skimage, python3:any
+Description: Astronomical Plotting Library in Python
+Homepage: https://aplpy.github.io/
+Description-md5: 15757c37e39a14068119c4de0a4ef3a1
+Section: python
+Priority: optional
+Filename: pool/main/a/aplpy/python3-aplpy_2.1.0-1_all.deb
+Size: 52500
+MD5sum: 896819239e6744b38003cab39945fd14
+SHA256: 052d57f39b7c7425e972ada09f0317499169d150311b09780e3fc92fea64e347
+
+Package: aplus-fsf
+Version: 4.22.1-10.2
+Installed-Size: 8818
+Maintainer: Neil Roeth <neil@debian.org>
+Architecture: amd64
+Depends: libc6 (>= 2.33), libgcc-s1 (>= 3.0), libnsl2 (>= 1.0), libstdc++6 (>= 5.2.1), libx11-6
+Description: A+ programming language run-time environment
+Description-md5: 553a1401429147544eda6fd62028da59
+Tag: devel::interpreter, devel::runtime, interface::commandline,
+ role::program, scope::utility, works-with::software:source
+Section: interpreters
+Priority: optional
+Filename: pool/main/a/aplus-fsf/aplus-fsf_4.22.1-10.2_amd64.deb
+Size: 2019628
+MD5sum: dd5c44aff20af41dd2f2eadbfd134adf
+SHA256: 67ecd89e43be1dc16e90916829f03e49a8a295784177ca63660f134e08eb0723
+
+Package: aplus-fsf-dev
+Source: aplus-fsf
+Version: 4.22.1-10.2
+Installed-Size: 14
+Maintainer: Neil Roeth <neil@debian.org>
+Architecture: amd64
+Depends: aplus-fsf, aplus-fsf-el, aplus-fsf-doc
+Recommends: xfonts-kapl
+Description: A+ programming language development environment
+Description-md5: 2b29868efe57b57613d5a1dbe35a518b
+Tag: devel::interpreter, devel::library, devel::runtime,
+ interface::commandline, role::devel-lib, role::program,
+ works-with::software:source
+Section: devel
+Priority: optional
+Filename: pool/main/a/aplus-fsf/aplus-fsf-dev_4.22.1-10.2_amd64.deb
+Size: 7312
+MD5sum: f4323c0ec7f9184e4c6ee2ea423c9034
+SHA256: 0808068e7df7ad55da8736381965b40cc7f9170a4627b7df5f7252aaed32ca2d
+
+Package: aplus-fsf-doc
+Source: aplus-fsf
+Version: 4.22.1-10.2
+Installed-Size: 6777
+Maintainer: Neil Roeth <neil@debian.org>
+Architecture: all
+Recommends: xfonts-kapl
+Description: A+ programming language documentation
+Description-md5: d3f68c67c84e86d778475d6f359f9c74
+Tag: devel::doc, devel::interpreter, devel::runtime, interface::commandline,
+ role::documentation, role::program, works-with::software:source
+Section: doc
+Priority: optional
+Filename: pool/main/a/aplus-fsf/aplus-fsf-doc_4.22.1-10.2_all.deb
+Size: 2530368
+MD5sum: b290e063299c388633436c7daa99fab9
+SHA256: d651d04204a06c3d6aa1756ce46e24c03d020863eb386ae8211af8c85f5f2c3a
+
+Package: aplus-fsf-el
+Source: aplus-fsf
+Version: 4.22.1-10.2
+Installed-Size: 17
+Maintainer: Neil Roeth <neil@debian.org>
+Architecture: all
+Description: XEmacs lisp for A+ development
+Description-md5: 161c59272b88ea2bcd37387cb504df59
+Tag: devel::interpreter, devel::runtime, implemented-in::lisp,
+ interface::commandline, role::plugin, role::program, suite::emacs,
+ use::editing
+Section: lisp
+Priority: optional
+Filename: pool/main/a/aplus-fsf/aplus-fsf-el_4.22.1-10.2_all.deb
+Size: 9416
+MD5sum: ac1145c54c313ce742323025244ee948
+SHA256: 7dd02bf91aaf9201fca2b4d312a7abbc30daeda0dd63f88ef8527fd4ca8dbd12
+
+Package: xfonts-kapl
+Source: aplus-fsf
+Version: 4.22.1-10.2
+Installed-Size: 91
+Maintainer: Neil Roeth <neil@debian.org>
+Architecture: all
+Depends: fontconfig, xfonts-utils
+Description: APL fonts for A+ development
+Description-md5: a34f9cd9b8d131f0d58526db8de8c0fb
+Tag: made-of::font, role::app-data, role::data, suite::emacs, x11::font
+Section: fonts
+Priority: optional
+Filename: pool/main/a/aplus-fsf/xfonts-kapl_4.22.1-10.2_all.deb
+Size: 49796
+MD5sum: e34152170235482db942c74f85d3c024
+SHA256: 6145e26bd44f43984e9daa179382e401c6c7ed9aacfd54b1deffc625a68fbe9e
+

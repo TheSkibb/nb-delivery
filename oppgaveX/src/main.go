@@ -21,11 +21,6 @@ import (
 const urlBatchReq = "https://api.osv.dev/v1/querybatch" //https://google.github.io/osv.dev/post-v1-querybatch/
 const urlVulnId = "https://api.osv.dev/v1/vulns/"       //https://google.github.io/osv.dev/get-v1-vulns/
 
-// files
-
-// const packageFile = "./Packages" //The package file to read from
-const packageFile = "./Packages_short" //The package file to read from
-
 // misc config
 
 const environment = "Debian:12" //The environment to scan for
@@ -64,15 +59,18 @@ func main() {
 
 	sFlag := flag.Bool("s", false, "scan for vulnerabilities")
 	lFlag := flag.Bool("l", false, "load vulnerabilities from saved file")
+	fileFlag := flag.String("file", "", "Package file to scan from")
 
 	flag.Parse()
 
 	var vulnerabilities []Vulnerability
 
 	if *sFlag {
-		vulnerabilities = scan()
+		//TODO, handle error
+		vulnerabilities, _ = scan(*fileFlag)
 	} else if *lFlag {
-		vulnerabilities = loadVulnerabilitesFromGob()
+		//TODO, handle error
+		vulnerabilities, _ = loadVulnerabilitesFromGob()
 	} else {
 		fmt.Println("you need to specify an option, use -h for help")
 	}
@@ -80,10 +78,17 @@ func main() {
 	displayDetails(vulnerabilities)
 }
 
-func scan() []Vulnerability {
+// scan the contents of the package file for vulnerabilities
+func scan(fileName string) ([]Vulnerability, error) {
 	fmt.Println("starting scan")
 
-	packagesAndVersions := getPackageList()
+	packagesAndVersions, err := getPackageList(fileName)
+
+	fmt.Println(packagesAndVersions, err)
+
+	if err != nil {
+		return []Vulnerability{}, err
+	}
 
 	vuln_ids := getVulnerabilities(packagesAndVersions)
 
@@ -97,17 +102,17 @@ func scan() []Vulnerability {
 
 	saveVulnerabilitiesAsGob(vulnerabilities)
 
-	return vulnerabilities
+	return vulnerabilities, nil
 }
 
 // loads vulnerabilities from a saved scan
-func loadVulnerabilitesFromGob() []Vulnerability {
+func loadVulnerabilitesFromGob() ([]Vulnerability, error) {
 	file, err := os.Open(".saved_scan")
 
 	defer file.Close()
 
 	if err != nil {
-		log.Fatal("could not open saved scan", err)
+		return []Vulnerability{}, fmt.Errorf("could not open saved scan")
 	}
 
 	var vulnerabilities []Vulnerability
@@ -119,7 +124,7 @@ func loadVulnerabilitesFromGob() []Vulnerability {
 		log.Fatal("could not decode saved scan", err)
 	}
 
-	return vulnerabilities
+	return vulnerabilities, nil
 }
 
 func saveVulnerabilitiesAsGob(data []Vulnerability) {
@@ -141,11 +146,11 @@ func saveVulnerabilitiesAsGob(data []Vulnerability) {
 
 // parses the packageFile.
 // extracts package names and version numbers
-func getPackageList() []PackageAndVersion {
-	file, err := os.Open(packageFile)
+func getPackageList(fileName string) ([]PackageAndVersion, error) {
+	file, err := os.Open(fileName)
 
 	if err != nil {
-		log.Fatal("could not open file", err)
+		return []PackageAndVersion{}, err
 	}
 
 	defer file.Close()
@@ -162,7 +167,7 @@ func getPackageList() []PackageAndVersion {
 			if err == io.EOF {
 				break
 			}
-			log.Fatal("error reading line", err)
+			return []PackageAndVersion{}, fmt.Errorf("could not read line: " + err.Error())
 		}
 
 		// if we find a package name we create a new enry in the list
@@ -182,16 +187,23 @@ func getPackageList() []PackageAndVersion {
 		if version := checkLine("Version: ", line); version != "" {
 			lastEntryIndex := len(packagesAndVersions) - 1
 
-			// if the entry before the in the list doesnt have a version number the list is probably malformed
+			// if the entry before the last entry in the list doesnt have a version number the list is probably malformed
 			if lastEntryIndex != 0 && packagesAndVersions[lastEntryIndex-1].Version == "" {
-				log.Fatal("package names and version numbers do not match, package list may be malformed")
+				return []PackageAndVersion{},
+					fmt.Errorf("version name is missing, package list may be malformed")
+			}
+
+			// if the last entry already has a version name, then the a package name has been skipped
+			if packagesAndVersions[lastEntryIndex].Version != "" {
+				return []PackageAndVersion{},
+					fmt.Errorf("last entry already has a version number, list may be malformed")
 			}
 
 			packagesAndVersions[lastEntryIndex].Version = version
 		}
 	}
 
-	return packagesAndVersions
+	return packagesAndVersions, nil
 }
 
 // checks if the line starts with the field value

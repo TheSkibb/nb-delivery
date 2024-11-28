@@ -1,0 +1,220 @@
+# program should give an error message for this file because it contains a package with missing version name
+
+Package: libantlr4-runtime-java
+Source: antlr4
+Version: 4.7.2-5
+Installed-Size: 365
+Maintainer: Debian Java Maintainers <pkg-java-maintainers@lists.alioth.debian.org>
+Architecture: all
+Description: Runtime library for ANTLR 4
+Multi-Arch: foreign
+Homepage: http://www.antlr4.org
+Description-md5: 244b432649ad7371a7e9b3dadaf7861d
+Section: java
+Priority: optional
+Filename: pool/main/a/antlr4/libantlr4-runtime-java_4.7.2-5_all.deb
+Size: 314536
+MD5sum: efde47dc27b84bd7f42e400d494ef182
+SHA256: ed34d7b40cf3cf75aa364191fb178ab10a3a6dc73bf5c215eb2997f5d6179f61
+
+Package: libantlr4-runtime-dev
+Source: antlr4-cpp-runtime
+Version: 4.9+dfsg-3
+Installed-Size: 3635
+Maintainer: Andrius Merkys <merkys@debian.org>
+Architecture: amd64
+Depends: libantlr4-runtime4.9 (= 4.9+dfsg-3)
+Description: ANTLR Parser Generator - C++ runtime support (development files)
+Multi-Arch: same
+Homepage: https://www.antlr.org
+Description-md5: 365f44b6f095e8ae1af31dd567c97bf7
+Tag: devel::library, role::devel-lib
+Section: libdevel
+Priority: optional
+Filename: pool/main/a/antlr4-cpp-runtime/libantlr4-runtime-dev_4.9+dfsg-3_amd64.deb
+Size: 502884
+MD5sum: 812e3030892ef7ef4ad413d39beaaf65
+SHA256: bbcaeeb5dbf54835fcf782f57e22f599879bbef7ad37c8492c1e5a23daff2076
+
+Package: libantlr4-runtime4.9
+Source: antlr4-cpp-runtime
+Version: 4.9+dfsg-3
+Installed-Size: 1226
+Maintainer: Andrius Merkys <merkys@debian.org>
+Architecture: amd64
+Depends: libc6 (>= 2.32), libgcc-s1 (>= 3.4), libstdc++6 (>= 12)
+Description: ANTLR Parser Generator - C++ runtime support (shared library)
+Multi-Arch: same
+Homepage: https://www.antlr.org
+Description-md5: b71b31defe6837dd06dbc5e0f9648a07
+Tag: role::shared-lib
+Section: libs
+Priority: optional
+Filename: pool/main/a/antlr4-cpp-runtime/libantlr4-runtime4.9_4.9+dfsg-3_amd64.deb
+Size: 330812
+MD5sum: c06adaa67f3c2959bc3935710e229bc3
+SHA256: 4fbc7abbbf78af841b8894fb9c4d97ee7340ffde8dcb841c284b95cda1cd7fd3
+
+Package: antpm
+Source: antpm (1.20-1)
+Version: 1.20-1+b1
+Installed-Size: 1774
+Maintainer: Kristóf Ralovich <tade60@freemail.hu>
+Architecture: amd64
+Depends: libboost-filesystem1.74.0 (>= 1.74.0), libboost-program-options1.74.0 (>= 1.74.0), libboost-thread1.74.0 (>= 1.74.0), libc6 (>= 2.34), libgcc-s1 (>= 3.0), libstdc++6 (>= 11), libusb-1.0-0 (>= 2:1.0.16), libxml2 (>= 2.7.4)
+Description: ANT+ information retrieval client for Garmin GPS products
+Homepage: https://github.com/ralovich/antpm
+Description-md5: b97569ae767d64acd327d9c3aa685d3c
+Tag: hardware::gps, implemented-in::c++, role::program,
+ works-with-format::xml:gpx
+Section: utils
+Priority: optional
+Filename: pool/main/a/antpm/antpm_1.20-1+b1_amd64.deb
+Size: 395064
+MD5sum: 717298257882019d2e0abf5613edae49
+SHA256: 68e6f8a22011d165ed6c355323de5f697e8dd9b618c1352dde65d62b31a50d9d
+
+Package: any2fasta
+# Comment: this is the package with a missing version
+Installed-Size: 21
+Maintainer: Debian Med Packaging Team <debian-med-packaging@lists.alioth.debian.org>
+Architecture: all
+Depends: perl:any
+Description: convert various sequence formats to FASTA
+Multi-Arch: foreign
+Homepage: https://github.com/tseemann/any2fasta
+Description-md5: 1e78b1530bbdc69463cd94094a931302
+Section: science
+Priority: optional
+Filename: pool/main/a/any2fasta/any2fasta_0.4.2-2_all.deb
+Size: 6232
+MD5sum: 9a2df426c4db65c95b88f1b3c17b4c2f
+SHA256: 5d5a205de7ba5317232647d833a1354bc6d3d60228545dcf3fe593be7a3abc76
+
+Package: any2fasta-examples
+Source: any2fasta
+Version: 0.4.2-2
+Installed-Size: 6373
+Maintainer: Debian Med Packaging Team <debian-med-packaging@lists.alioth.debian.org>
+Architecture: all
+Description: convert various sequence formats to FASTA (example data)
+Multi-Arch: foreign
+Homepage: https://github.com/tseemann/any2fasta
+Description-md5: 0894149c7f5c7fc45635d76eaa073f5a
+Section: science
+Priority: optional
+Filename: pool/main/a/any2fasta/any2fasta-examples_0.4.2-2_all.deb
+Size: 6509616
+MD5sum: cdeb2e2cb4504c336849593df46d5389
+SHA256: 7345afc5878efe867285622415a0ba70b9c32bbd57849df63c4600217c4502f9
+
+Package: python3-anymarkup
+Source: anymarkup
+Version: 0.8.1-2
+Installed-Size: 35
+Maintainer: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
+Architecture: all
+Depends: python3-anymarkup-core, python3-click, python3-configobj, python3-json5, python3-toml, python3-xmltodict, python3-yaml, python3:any
+Description: Parse or serialize any markup format in Python
+Homepage: https://github.com/bkabrda/anymarkup
+Description-md5: 67b1501c9a11e7784a942a1a765dde48
+Section: python
+Priority: optional
+Filename: pool/main/a/anymarkup/python3-anymarkup_0.8.1-2_all.deb
+Size: 9580
+MD5sum: da0e8393ace2bf885343bf2c38869f44
+SHA256: e759bcb989f22488c8b80935fa0a948ed53a6ce2f58c094adb279c16e7469373
+
+Package: python3-anymarkup-core
+Source: anymarkup-core
+Version: 0.8.1-3
+Installed-Size: 40
+Maintainer: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
+Architecture: all
+Depends: python3-six, python3:any
+Description: Core library for the anymarkup Python package
+Homepage: https://github.com/bkabrda/anymarkup-core
+Description-md5: 29359f3b60866bdbfb3dd6add1d169f1
+Section: python
+Priority: optional
+Filename: pool/main/a/anymarkup-core/python3-anymarkup-core_0.8.1-3_all.deb
+Size: 8316
+MD5sum: 73ed15392ef440325812deea3999fea3
+SHA256: 693694c5be8767e3bbf5c06b0af33889663bee719f9cdbc871d3601018445c98
+
+Package: anymeal
+Version: 1.18-2
+Installed-Size: 773
+Maintainer: Jan Wedekind <jan@wedesoft.de>
+Architecture: amd64
+Depends: libc6 (>= 2.34), libgcc-s1 (>= 3.0), libqt5core5a (>= 5.15.1), libqt5gui5 (>= 5.0.2) | libqt5gui5-gles (>= 5.0.2), libqt5printsupport5 (>= 5.0.2), libqt5widgets5 (>= 5.0.2), librecode0 (>= 3.6), libsqlite3-0 (>= 3.5.9), libstdc++6 (>= 11)
+Description: Recipe management software
+Homepage: https://wedesoft.github.io/anymeal/
+Description-md5: c738029790b9696a5e29d9b4f9c8021b
+Tag: uitoolkit::qt
+Section: utils
+Priority: optional
+Filename: pool/main/a/anymeal/anymeal_1.18-2_amd64.deb
+Size: 389880
+MD5sum: 8dfdfa4fd128daf32c59079c5ae4a2ae
+SHA256: fbac4549fc40b38bffe3e4682c1ac7ffcdad8c3cd43e192987d6a06748703e21
+
+Package: anypaper
+Version: 2.4-2.1
+Installed-Size: 221
+Maintainer: Alejandro Garrido Mota <alejandro@debian.org>
+Architecture: amd64
+Depends: libc6 (>= 2.4), libgdk-pixbuf-2.0-0 (>= 2.22.0), libglib2.0-0 (>= 2.37.3), libgtk2.0-0 (>= 2.14.0)
+Description: front-end for wallpapersetter
+Homepage: http://anypaper.sourceforge.net
+Description-md5: cdd61dce9498f757b7a194ccd5f73ced
+Tag: implemented-in::c, interface::graphical, interface::x11, role::program,
+ scope::utility, uitoolkit::gtk, use::configuring, use::viewing,
+ works-with-format::jpg, works-with-format::png, works-with::image,
+ works-with::image:raster, x11::application
+Section: utils
+Priority: optional
+Filename: pool/main/a/anypaper/anypaper_2.4-2.1_amd64.deb
+Size: 70904
+MD5sum: 2baaa82e9ba5b58b150c284127da5fc6
+SHA256: 310c03eca6a8d28104730c2f31a7825d83bae414d4c44f3dbbabb39dc57ca386
+
+Package: anyremote
+Version: 6.7.3-3
+Installed-Size: 269
+Maintainer: Philipp Huebner <debalance@debian.org>
+Architecture: amd64
+Depends: libbluetooth3 (>= 4.91), libc6 (>= 2.15), libglib2.0-0 (>= 2.31.8), libx11-6, libxtst6, anyremote-data
+Suggests: python-xmmsclient, anyremote-doc
+Description: Remote control daemon for applications using Bluetooth, IrDA or Wi-Fi
+Homepage: http://anyremote.sourceforge.net
+Description-md5: 014f7ca16e8c56501d0cb96b3cc4882a
+Tag: implemented-in::c, role::program
+Section: utils
+Priority: optional
+Filename: pool/main/a/anyremote/anyremote_6.7.3-3_amd64.deb
+Size: 105148
+MD5sum: ec95007a5e95c699cfb1479b8055a372
+SHA256: e1732289783489bf439b5f38833de20a6d62fdc75bd2f72c57f8a267c596422d
+
+Package: anyremote-data
+Source: anyremote
+Version: 6.7.3-3
+Installed-Size: 1593
+Maintainer: Philipp Huebner <debalance@debian.org>
+Architecture: all
+Recommends: anyremote, python3
+Suggests: anyremote-doc
+Description: architecture independent files for anyremote
+Multi-Arch: foreign
+Homepage: http://anyremote.sourceforge.net
+Description-md5: e7e87e05635c0637126d4e22f3375fc0
+Tag: role::app-data
+Section: utils
+Priority: optional
+Filename: pool/main/a/anyremote/anyremote-data_6.7.3-3_all.deb
+Size: 856236
+MD5sum: f11c405956fbe4fbc5f7fc4ada93ddb8
+SHA256: e206b6b040230335a302f39f05ec88d70407e350846f640bca8fddc964203a4f
+
+
