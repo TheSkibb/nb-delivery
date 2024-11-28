@@ -84,8 +84,6 @@ func scan(fileName string) ([]Vulnerability, error) {
 
 	packagesAndVersions, err := getPackageList(fileName)
 
-	fmt.Println(packagesAndVersions, err)
-
 	if err != nil {
 		return []Vulnerability{}, err
 	}
