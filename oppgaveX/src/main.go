@@ -57,7 +57,7 @@ type Severity struct {
 
 func main() {
 
-	sFlag := flag.Bool("s", false, "scan for vulnerabilities")
+	sFlag := flag.Bool("s", false, "run new scan for vulnerabilities")
 	lFlag := flag.Bool("l", false, "load vulnerabilities from saved file")
 	fileFlag := flag.String("file", "", "Package file to scan from")
 
@@ -65,14 +65,22 @@ func main() {
 
 	var vulnerabilities []Vulnerability
 
+	if *fileFlag == "" {
+		log.Fatal("you need to specify a file to analyze\n use -h to see how")
+	}
+
+	var err error
+
 	if *sFlag {
-		//TODO, handle error
-		vulnerabilities, _ = scan(*fileFlag)
+		vulnerabilities, err = scan(*fileFlag)
 	} else if *lFlag {
-		//TODO, handle error
-		vulnerabilities, _ = loadVulnerabilitesFromGob(*fileFlag)
+		vulnerabilities, err = loadVulnerabilitesFromGob(*fileFlag)
 	} else {
 		fmt.Println("you need to specify an option, use -h for help")
+	}
+
+	if err != nil {
+		log.Fatal("something went wrong", err.Error())
 	}
 
 	displayDetails(vulnerabilities)
